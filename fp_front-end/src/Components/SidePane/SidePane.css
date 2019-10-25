@@ -1,0 +1,20 @@
+.Pane {
+    width: 20vw;
+    height: 100vh;
+    padding-top: 25px;
+    background:rgb(65, 63, 63);
+}
+
+.Form-Container {
+    width: 20vw;
+    height: 80vh;
+    margin-left: 45px;
+    /* margin-top: 100px; */
+    /* margin: auto; */
+    /* background: lightgray; */
+}
+
+.Run-Button {
+    /* margin-top: 430px; */
+    margin-left: 100px;
+}

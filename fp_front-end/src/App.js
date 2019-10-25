@@ -3,27 +3,27 @@ import logo from './logo.svg';
 import './App.css';
 import mapboxgl from "mapbox-gl";
 import ReactMapGL from "react-map-gl";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+import Map from "./Components/Map/Map"
+import SidePane from './Components/SidePane/SidePane';
+import NavBarComponent from './Components/NavBarComponent/NavBarComponent';
 
 class App extends React.Component {
-
-  state = {
-    viewport: {
-      width:"100vw",
-      height: "100vh",
-      latitude: 42.430472,
-      longitude: -123.334102,
-      zoom: 16
-    }
-  }
 
   render(){
 
     return (
-      <ReactMapGL 
-      {...this.state.viewport} mapStyle="mapbox://styles/mapbox/outdoors-v11"
-      onViewportChange={(viewport => this.setState({viewport}))}
-      mapboxApiAccessToken = 'pk.eyJ1IjoidWJhY2hyaXMiLCJhIjoiY2sxYjczdWhpMGZuMzNjb2I5OGlqb3gwaCJ9.iLrtxaVXfhsJM0iyWwdQ5Q'>
-      </ReactMapGL>
+      <div>
+        <NavBarComponent />
+        <div style= {{display: "inline"}}>
+          <Map />          
+          <div style= {{zIndex: "-1"}}>
+            <SidePane />
+          </div>
+        </div>
+      </div>
     );
   }
 }
