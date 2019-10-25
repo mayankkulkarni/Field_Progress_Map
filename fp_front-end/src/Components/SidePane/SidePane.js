@@ -11,6 +11,7 @@ const SidePane=  () => (
         <div className="Form-Container">
           <VoterInputForms />
         </div>
+        <Button className="Run-Button2" variant="light">Add Volunteer</Button>
         <Button className="Run-Button" variant="light">Cut Turf</Button>
     </div>
 );
