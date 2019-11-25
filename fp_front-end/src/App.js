@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import mapboxgl from "mapbox-gl";
-import ReactMapGL from "react-map-gl";
+// import mapboxgl from "mapbox-gl";
+// import ReactMapGL from "react-map-gl";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -12,16 +11,31 @@ import NavBarComponent from './Components/NavBarComponent/NavBarComponent';
 
 class App extends React.Component {
 
-  render(){
+  state={
+    showPane: false
+  }
+  
 
-    return (
+  menuHandler= () => {
+    let paneBoolean = this.state.showPane
+    this.setState({showPane: !paneBoolean})
+  }
+
+  render(){
+    let pane = null
+    
+    
+
+    return (  
       <div>
-        <NavBarComponent />
-        <div style= {{display: "inline"}}>
-          <Map />          
-          <div style= {{zIndex: "-1"}}>
-            <SidePane />
-          </div>
+        <div>
+          <NavBarComponent click= {this.menuHandler}/>
+        </div>
+        <div>
+          <SidePane />
+        </div>
+        <div className="Map-Canvas">
+          <Map display={this.state.showPane}/>          
         </div>
       </div>
     );

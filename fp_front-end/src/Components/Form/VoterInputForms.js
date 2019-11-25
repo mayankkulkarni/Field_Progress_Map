@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Form, Card} from 'react-bootstrap/';
+import {Form, Card} from 'react-bootstrap/';
 
 class VoterInputForms extends React.Component {
 
@@ -11,30 +11,20 @@ class VoterInputForms extends React.Component {
                         <Form>
                             <div>
                                 <Form.Label>Volunteer Name</Form.Label>
-                                <Form.Control type="text" placeholder="John Doe" />
+                                <Form.Control type="text" 
+                                onChange= {this.props.nameChange}
+                                value={this.props.name}/>
                             </div>
                             <div>
                                 <Form.Label>Availability</Form.Label>
-                                <Form.Control type="text" placeholder="2hrs" />
+                                <Form.Control type="text" 
+                                onChange= {this.props.availabilityChange}
+                                value={this.props.availability}/>
                             </div>
                         </Form>
                     </Card.Body>
                 </Card>
 
-                <Card style={{ width: '12rem' }}>
-                    <Card.Body>
-                        <Form>
-                            <div>
-                                <Form.Label>Volunteer Name</Form.Label>
-                                <Form.Control type="text" placeholder="Jane Doe" />
-                            </div>
-                            <div>
-                                <Form.Label>Availability</Form.Label>
-                                <Form.Control type="text" placeholder="4hrs" />
-                            </div>
-                        </Form>
-                    </Card.Body>
-                </Card>
             </>
             
         )
