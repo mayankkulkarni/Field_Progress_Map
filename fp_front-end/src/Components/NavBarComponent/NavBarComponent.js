@@ -6,6 +6,7 @@ const NavBarComponent = (props) => (
 
     <Navbar bg="dark" variant="dark">
       <Button variant="light" 
+      id="toggle-input-btn"
       style= {{marginRight: "10px"}}
       onClick={props.click}
       >Toggle Input</Button>
