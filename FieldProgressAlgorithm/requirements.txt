@@ -1,9 +1,0 @@
-pandas
-Shapely==1.6.4.post2
-geopandas
-mapboxgl
-scikit_learn
-ipython
-requests
-numpy
-PySAL==1.14.4.post2

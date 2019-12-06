@@ -1,10 +1,35 @@
-# Field_Progress_Map
-Field Progress Map Software Engineering Project
+# Field Progress Webapp
 
-# Introduction
+## Getting Started
 
-This is the main code repository for the web application Field Progress Map. 
+1. Create Python virtual environment
 
-# Collaboration
- - To collaborate please create a seperate branch of the master branch and make changes to that branch.
- - Once the changes are made then create a pull request to merge the changes to the master branch.
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+2. Install Python dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Install Node dependencies
+
+```bash
+cd frontend/FP_Frontend
+npm install
+```
+
+4. Start the service
+
+```bash
+npm start
+```
+
+5. Run tests
+
+```bash
+node_modules/.bin/cucumber.js
+```
