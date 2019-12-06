@@ -42,7 +42,7 @@ class SidePane extends React.Component {
 
   sendData= () => {
     const volunteers = this.state.volunteers
-    axios.get('http://localhost:8000/home/')
+    axios.get('http://localhost:8000/api/results/')
           .then( response => {
             console.log(response);
           })
