@@ -15,20 +15,26 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Install Node dependencies
+3. Start Django server
+
+```bash
+python manage.py runserver
+```
+
+4. Install Node dependencies
 
 ```bash
 cd frontend/FP_Frontend
 npm install
 ```
 
-4. Start the service
+5. Start the service
 
 ```bash
 npm start
 ```
 
-5. Run tests
+6. Run tests
 
 ```bash
 node_modules/.bin/cucumber.js
