@@ -33,7 +33,7 @@ class VehicleRouting(object):
         names = {}
         idx = 0
         for i in self.volunteer_info:
-            availability += [i['availability']*60*60]
+            availability += [int(float(i['availability'])*60*60)]
             names[idx] = i['volunteer_name']
             idx+=1
         return availability, names
