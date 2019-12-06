@@ -37,19 +37,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Testing
-
-Automated UI tests are powered by Selenium, Cucumber, and Chai. To test all features, run the following commands from this directory:
-
-```bash
-$ npm install
-$ ./node_modules/.bin/cucumber-js
-```
-
-Google Chrome will open, and the tests will run within it automatically. Once all tests have completed, return to your terminal to view the output of the tests.
-
-Note that the Google Chrome web browser is required to run these tests.
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

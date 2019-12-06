@@ -216,6 +216,7 @@ class Map extends React.Component {
       
       if (Object.entries(turfData).length === 0 && turfData.constructor === Object){
         scatterplotObject = {
+
           id: 'scatterplot',
           getPosition: d => d.geometry.coordinates,
           getColor: d => [0,0,0],
