@@ -117,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-<<<<<<< HEAD
 STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static'),]
 
 STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
@@ -127,9 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 WHITENOISE_ROOT = os.path.join(FRONTEND_DIR, 'build', 'root')
 
 # STATIC_ROOT = os.path.join(FRONTEND_DIR, 'build', 'static')
-=======
-STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]
->>>>>>> dacefbf2d74004beb4498572120102fd77e1ddb0
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

@@ -39,31 +39,31 @@ export const COLOR_SCALE = scaleThreshold()
 export const COLOR_TO_RGB_ARRAY=(cluster) =>{
 
   switch (cluster){
-    case 1:
+    case 0:
       return [255,0,0]
 
-    case 2:
+    case 1:
       return [255,255,0]
 
-    case 3:
+    case 2:
       return [0,0,255]
 
-    case 4:
+    case 3:
       return [0,128,0]
 
-    case 5:
+    case 4:
       return [255,165,0]
 
-    case 6:
+    case 5:
       return [238,130,238]
 
-    case 7:
+    case 6:
       return [0,128,128]
 
-    case 8:
+    case 7:
       return [75,0,130]
 
-    case 9:
+    case 8:
       return [250,128,114]
 
     default:
@@ -136,27 +136,27 @@ class Map extends React.Component {
     componentDidMount() {
       
       //comment this in 
-      // axios.get('http://localhost:8000/api/results/')
-      //     .then( response => {
-      //       this._processData(response.data);
-      //       // console.log(response);
-      //     })
+      axios.get('http://localhost:8000/api/results/')
+          .then( response => {
+            this._processData(response.data);
+            // console.log(response);
+          })
 
       //comment this out 
-      this._processData();
+      // this._processData();
     }
 
     //Put this in when akanshka makes sure her endpoint is working 
-    // _processData(data) {
-    //   const points = data.features;
-    //   this.setState({points})
-    // }
-
-    //Comment this out when the results of her end point is working 
-    _processData() {
-      const points = geoJsonData.features;
+    _processData(data) {
+      const points = data.features;
       this.setState({points})
     }
+
+    //Comment this out when the results of her end point is working 
+    // _processData() {
+    //   const points = geoJsonData.features;
+    //   this.setState({points})
+    // }
 
     _onHover = ({ x, y, object }) => {
       const properties = object ? object.properties : null;
@@ -186,19 +186,31 @@ class Map extends React.Component {
          left: left, top: "7.3%"}}>
            
           <div>
+            <b>Name</b>
+          </div>
+          <div>{hover.hoveredObject.Name}</div> 
+          <div>
             <b>Cluster</b>
           </div>
           <div>
             <div>{hover.hoveredObject.cluster}</div>
           </div>
           <div>
-            <b>Name</b>
+            <b>Voliunteer Assigned</b>
           </div>
-          <div>{hover.hoveredObject.Name}</div>
+          <div>
+            <div>{hover.hoveredObject.volunteer}</div>
+          </div>
           <div>
             <b>Location</b>
           </div>
           <div>{hover.hoveredObject.Address}</div>
+          <div>
+            <b>Next Voter On Route</b>
+          </div>
+          <div>
+            <div>{hover.hoveredObject.next_voter}</div>
+          </div>
         </div>
       )
     }

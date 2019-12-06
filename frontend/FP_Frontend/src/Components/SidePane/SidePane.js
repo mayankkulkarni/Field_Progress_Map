@@ -61,7 +61,7 @@ class SidePane extends React.Component {
     }
 
     //this will be axios.post
-    axios.get('http://localhost:8000/api/results/')
+    axios.post('http://localhost:8000/api/clusters/', requestData)
           .then( response => {
             this.props.turfResult(response.data)
             // console.log(response);

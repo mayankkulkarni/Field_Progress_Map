@@ -79,7 +79,7 @@ class VehicleRouting(object):
                 plan_output += ' {} -> '.format(manager.IndexToNode(index))
                 idx = manager.IndexToNode(index) - 1
                 self.precinct_voters['features'][idx]['properties'].update({'volunteer': names[vehicle_id]})
-
+                self.precinct_voters['features'][idx]['properties'].update({'cluster': vehicle_id})
                 previous_index = index
                 index = solution.Value(routing.NextVar(index))
                 if routing.IsEnd(index):
