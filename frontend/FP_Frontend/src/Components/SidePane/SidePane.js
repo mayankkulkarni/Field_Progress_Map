@@ -82,7 +82,7 @@ class SidePane extends React.Component {
       }
     }
 
-    axios.get('http://localhost:8000/home/').then( response => {
+    axios.get('http://localhost:8000/api/results/').then( response => {
       console.log(response);
     });
   }
