@@ -42,10 +42,22 @@ class SidePane extends React.Component {
 
   sendData= () => {
     const volunteers = this.state.volunteers
+    const precinctID = this.props.precinctInfo
+    const requestData= {
+      precinctID: precinctID,
+      volunteers: volunteers,
+    }
+
+    //this will be axios.post
     axios.get('http://localhost:8000/api/results/')
           .then( response => {
-            console.log(response);
+            this.props.turfResult(response.data)
+            // console.log(response);
           })
+
+    this.setState({volunteers: [
+      {volunteerName: '', availability: ''}
+    ]})
   }
 
   render(){
