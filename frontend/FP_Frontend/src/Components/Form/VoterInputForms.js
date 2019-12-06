@@ -13,13 +13,15 @@ class VoterInputForms extends React.Component {
                                 <Form.Label>Volunteer Name</Form.Label>
                                 <Form.Control type="text" 
                                 onChange= {this.props.nameChange}
-                                value={this.props.name}/>
+                                value={this.props.name}
+                                placeholder="John Doe" />
                             </div>
                             <div>
                                 <Form.Label>Availability</Form.Label>
                                 <Form.Control type="text" 
                                 onChange= {this.props.availabilityChange}
-                                value={this.props.availability}/>
+                                value={this.props.availability}
+                                placeholder="3h" />
                             </div>
                         </Form>
                     </Card.Body>
