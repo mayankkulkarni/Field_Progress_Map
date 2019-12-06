@@ -164,20 +164,6 @@ class Map extends React.Component {
       
 
       return [
-        // only needed when using shadows - a plane for shadows to drop on
-        // new PolygonLayer({
-        //   id: 'polygon-layer',
-        //   precinctCoord,
-        //   pickable: true,
-        //   stroked: true,
-        //   filled: true,
-        //   wireframe: true,
-        //   lineWidthMinPixels: 1,
-        //   getPolygon: d => d,
-        //   getLineColor: [80, 80, 80],
-        //   getFillColor: [80, 80, 80],
-        //   getLineWidth: 250,
-        // }),
         new ScatterplotLayer({
           id: 'scatterplot',
           getPosition: d => d.geometry.coordinates,

@@ -15,6 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR= os.path.join(BASE_DIR, 'frontend/FP_Frontend')
+print(FRONTEND_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +27,7 @@ SECRET_KEY = 'rod#244b@1=kon8j2%a^()k6=8h0pl&!v*@71+)54(--$%u5a0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -58,11 +59,12 @@ MIDDLEWARE = [
 
 
 # Addition begin
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = [
        'http://localhost:3000',
 ]
+
 # Addition end
 
 ROOT_URLCONF = 'backend.urls'
@@ -115,7 +117,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]
+STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static'),]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+# STATIC_ROOT = os.path.join(FRONTEND_DIR, 'build', 'static')
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
