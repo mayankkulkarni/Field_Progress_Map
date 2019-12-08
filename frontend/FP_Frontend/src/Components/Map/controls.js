@@ -5,7 +5,7 @@ export const SCATTERPLOT_CONTROLS = {
     radiusScale: {
       displayName: 'Scatterplot Radius',
       type: 'range',
-      value: 5,
+      value: 3,
       step: 1,
       min: 0,
       max: 10

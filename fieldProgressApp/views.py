@@ -20,8 +20,8 @@ def renderClusteredGeoJson(request):
 		mapbox_token = 'pk.eyJ1IjoidWJhY2hyaXMiLCJhIjoiY2sxYjczdWhpMGZuMzNjb2I5OGlqb3gwaCJ9.iLrtxaVXfhsJM0iyWwdQ5Q'
 		print(json_data)
 		print(json_data['volunteers'])
-		print(json_data['precintID'])
-		vhr = main.VehicleRouting(json_data['volunteers'], mapbox_token, len(json_data['volunteers']), json_data['precintID'])
+		print(json_data['precinctID'])
+		vhr = main.VehicleRouting(json_data['volunteers'], mapbox_token, len(json_data['volunteers']), json_data['precinctID'])
 		vhr.cut()
 		with open('cluster.geojson', 'r') as f:
 			data=json.load(f)

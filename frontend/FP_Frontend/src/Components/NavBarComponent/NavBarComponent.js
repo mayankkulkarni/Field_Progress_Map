@@ -1,15 +1,59 @@
 import React from "react";
-import {Button, Navbar} from 'react-bootstrap/';
+import {Button, Navbar, Form} from 'react-bootstrap/';
+import ReactDOM from 'react-dom';
+import Precinct from '../../precinct.json';
 
+const PrecinctData= [...Precinct.features]
+console.log(PrecinctData)
 
-const NavBarComponent = (props) => (
+class NavBarComponent extends React.Component {
 
-    <Navbar bg="dark" variant="dark">
-      <Button variant="light" 
-      style= {{marginRight: "10px"}}
-      onClick={props.click}
-      >Toggle Input</Button>
-    </Navbar>
-);
+  state= {
+    PrecinctIDs: [],
+    SelectedID: ""
+  }
 
+  componentDidMount= () => {
+    this.getPrecinctIDs(PrecinctData);
+  }
+
+  getPrecinctIDs= (data) => {
+
+    const IDs = data.map( object => object.properties.code)
+    this.setState({PrecinctIDs: IDs})
+  }
+
+  handleIDChange= (event) => {
+    const ID = event.target.value
+    this.setState({SelectedID: ID});
+    this.props.getID(ID)
+  }
+
+  render() {
+
+    return (
+
+        <Navbar bg="dark" variant="dark">
+          <Button variant="light" 
+          style= {{marginRight: "10px"}}
+          onClick={this.props.click}
+          >Toggle Input</Button>
+          <Form.Group controlId="formGridState" style= {{marginBottom: "0px", marginLeft: "500px"}}>
+            <Form.Control
+             as="select"
+             ref="precintID"
+             placeholder="Select Precinct..." 
+             onChange={this.handleIDChange}>
+               <option>Select Precinct</option>
+              {
+                this.state.PrecinctIDs.map((id, index) => {
+                  return <option key={index}>{id}</option>
+                })
+              }
+            </Form.Control>
+          </Form.Group>
+        </Navbar>
+    );
+  }
+}
 export default NavBarComponent

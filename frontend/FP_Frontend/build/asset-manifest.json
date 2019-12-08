@@ -9,7 +9,11 @@
     "static/js/2.276822fe.chunk.js": "/static/js/2.276822fe.chunk.js",
     "static/js/2.276822fe.chunk.js.map": "/static/js/2.276822fe.chunk.js.map",
     "index.html": "/index.html",
+<<<<<<< HEAD:frontend/FP_Frontend/build/asset-manifest.json
+    "precache-manifest.97f7f648ffe427e0ec613a74dd362fe2.js": "/precache-manifest.97f7f648ffe427e0ec613a74dd362fe2.js",
+=======
     "precache-manifest.c7c7c9da1f7fa84981f4b1cfd4615ab9.js": "/precache-manifest.c7c7c9da1f7fa84981f4b1cfd4615ab9.js",
+>>>>>>> dacefbf2d74004beb4498572120102fd77e1ddb0:frontend/FP_Frontend/build/asset-manifest.json
     "service-worker.js": "/service-worker.js",
     "static/css/2.0624914a.chunk.css.map": "/static/css/2.0624914a.chunk.css.map",
     "static/css/main.8ba6bf05.chunk.css.map": "/static/css/main.8ba6bf05.chunk.css.map"

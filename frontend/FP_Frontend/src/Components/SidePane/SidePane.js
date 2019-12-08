@@ -42,10 +42,34 @@ class SidePane extends React.Component {
 
   sendData= () => {
     const volunteers = this.state.volunteers
-    axios.get('http://localhost:8000/home/')
+    const precinctID = this.props.precinctInfo
+    const requestData= {
+      precinctID: precinctID,
+      volunteers: volunteers,
+    }
+
+    // Make sure all cards are filled in
+    for (var it = 0; it < volunteers.length; it++) {
+      if (volunteers[it].volunteerName == '') {
+        window.alert('Please ensure all cards have valid volunteer names.')
+        return
+      }
+      if (volunteers[it].availability == '') {
+        window.alert('Please ensure all cards have valid volunteer availabilities.')
+        return
+      }
+    }
+
+    //this will be axios.post
+    axios.post('http://localhost:8000/api/clusters/', requestData)
           .then( response => {
-            console.log(response);
+            this.props.turfResult(response.data)
+            // console.log(response);
           })
+
+    this.setState({volunteers: [
+      {volunteerName: '', availability: ''}
+    ]})
   }
 
   render(){

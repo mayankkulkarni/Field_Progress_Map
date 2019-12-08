@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework', # added
     'corsheaders', # added
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,7 +117,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]
+STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static'),]
+
+STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+WHITENOISE_ROOT = os.path.join(FRONTEND_DIR, 'build', 'root')
+
+# STATIC_ROOT = os.path.join(FRONTEND_DIR, 'build', 'static')
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

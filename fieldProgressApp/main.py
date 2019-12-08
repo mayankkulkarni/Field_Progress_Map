@@ -34,7 +34,7 @@ class VehicleRouting(object):
         idx = 0
         for i in self.volunteer_info:
             availability += [int(float(i['availability'])*60*60)]
-            names[idx] = i['volunteer_name']
+            names[idx] = i['volunteerName']
             idx+=1
         return availability, names
 
@@ -79,7 +79,7 @@ class VehicleRouting(object):
                 plan_output += ' {} -> '.format(manager.IndexToNode(index))
                 idx = manager.IndexToNode(index) - 1
                 self.precinct_voters['features'][idx]['properties'].update({'volunteer': names[vehicle_id]})
-
+                self.precinct_voters['features'][idx]['properties'].update({'cluster': vehicle_id})
                 previous_index = index
                 index = solution.Value(routing.NextVar(index))
                 if routing.IsEnd(index):

@@ -12,7 +12,9 @@ import NavBarComponent from './Components/NavBarComponent/NavBarComponent';
 class App extends React.Component {
 
   state={
-    showPane: false
+    showPane: false,
+    clusterResult: {},
+    precinctID: ''
   }
   
 
@@ -21,21 +23,36 @@ class App extends React.Component {
     this.setState({showPane: !paneBoolean})
   }
 
+  getTurfCutResult = (algorithmResult) => {
+    this.setState({clusterResult: algorithmResult})
+  }
+
+  retrievePrecintID = (ID) => {
+    this.setState({precinctID:ID})
+  }
+
+
   render(){
     let pane = null
     
-    
-
     return (  
       <div>
         <div>
-          <NavBarComponent click= {this.menuHandler}/>
+          <NavBarComponent 
+          click= {this.menuHandler}
+          getID= {this.retrievePrecintID}/>
         </div>
         <div>
-          <SidePane />
+          <SidePane 
+          turfResult={this.getTurfCutResult}
+          precinctInfo= {this.state.precinctID}
+          />
         </div>
         <div>
-          <Map display={this.state.showPane}/>          
+          <Map 
+          display={this.state.showPane}
+          dataPoints= {this.state.clusterResult}
+          />          
         </div>
       </div>
     );
