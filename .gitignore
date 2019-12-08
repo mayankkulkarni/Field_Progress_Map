@@ -4,3 +4,4 @@ frontend/FP_Frontend/node_modules
 .vscode
 node_modules
 lib
+bin
