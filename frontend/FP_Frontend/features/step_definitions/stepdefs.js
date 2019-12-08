@@ -44,6 +44,22 @@ When('I add a new volunteer card', {timeout: 60 * 1000}, async function() {
     addVolunteerButton.click();
 });
 
+When('I slide the scatterplot slider to the {string} by {int}', {timeout: 60 * 1000}, async function(direction, amount) {
+    const slider = await driver.findElement(By.id("radiusScale"));
+    for (var it = 0; it < amount; it++) {
+        if (direction.toLowerCase() === "right") {
+            slider.sendKeys(Key.RIGHT);
+        } else if (direction.toLowerCase() === "left") {
+            slider.sendKeys(Key.LEFT);
+        }
+    }
+});
+
+Then('the scatterplot radius should be {string}', {timeout: 60 * 1000}, async function(newValue) {
+    const settings = await driver.findElements(By.className("control"));
+    expect(settings.values[0] == newValue);
+});
+
 Then('I should see a card for {string} with availability {string}', {timeout: 60 * 1000}, async function(name, avail) {
     const elements = await driver.findElements(By.className("card"));
     var matched = false

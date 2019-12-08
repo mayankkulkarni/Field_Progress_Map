@@ -5,7 +5,7 @@ Feature: Warn user that one or more volunteer cards contain invalid availabiliti
         Given I am on the Field Progress Webapp webpage
         When I fill out volunteer "Alex" with availability ""
         And I add a new volunteer card
-        And I fill out volunteer "Roger" with availability "3h"
+        And I fill out volunteer "Roger" with availability "3"
         And I add a new volunteer card
         And I fill out volunteer "Jonathan" with availability ""
         And I add a new volunteer card

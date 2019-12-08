@@ -3,12 +3,12 @@ Feature: Warn user that one or more volunteer cards contain invalid names
 
     Scenario:
         Given I am on the Field Progress Webapp webpage
-        When I fill out volunteer "Alex" with availability "2h"
+        When I fill out volunteer "Alex" with availability "22"
         And I add a new volunteer card
-        And I fill out volunteer "" with availability "3h"
+        And I fill out volunteer "" with availability "3"
         And I add a new volunteer card
-        And I fill out volunteer "Jonathan" with availability "6h"
+        And I fill out volunteer "Jonathan" with availability "6"
         And I add a new volunteer card
-        And I fill out volunteer "" with availability "30m"
+        And I fill out volunteer "" with availability "0.5"
         Then I cut turf
         And I should be prompted to fill in valid names

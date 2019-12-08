@@ -36,6 +36,7 @@ class NavBarComponent extends React.Component {
         <Navbar bg="dark" variant="dark">
           <Button variant="light" 
           style= {{marginRight: "10px"}}
+          id="toggle-input-btn" 
           onClick={this.props.click}
           >Toggle Input</Button>
           <Form.Group controlId="formGridState" style= {{marginBottom: "0px", marginLeft: "500px"}}>

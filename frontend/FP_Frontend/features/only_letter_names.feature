@@ -3,8 +3,8 @@ Feature: Only allow letters in volunteer names
 
     Scenario:
         Given I am on the Field Progress Webapp webpage
-        When I fill out volunteer "John Doe" with availability "3h"
+        When I fill out volunteer "John Doe" with availability "3"
         And I add a new volunteer card
-        And I fill out volunteer "Robot-123" with availability "100h"
-        Then I should see a card for "John Doe" with availability "3h"
-        And I should see a card for "Robot" with availability "100h"
+        And I fill out volunteer "Robot-123" with availability "100"
+        Then I should see a card for "John Doe" with availability "3"
+        And I should see a card for "Robot" with availability "100"
