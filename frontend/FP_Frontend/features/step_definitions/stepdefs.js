@@ -39,6 +39,18 @@ When('I fill out volunteer {string} with availability {string}', {timeout: 60 * 
     availEl.sendKeys(avail);
 });
 
+When('I select {string} from the precinct dropdown', {timeout: 60 * 1000}, async function(precinct) {
+    const dropdown = await driver.findElement(By.id("formGridState"));
+    const selection = await driver.findElement(By.id("formGridState")).sendKeys(precinct);
+});
+
+Then('I should see {string} selected in the precinct dropdown', {timeout: 60 * 1000}, async function(precinct) {
+    const dropdown = await driver.findElement(By.id("formGridState"));
+    dropdown.getAttribute('value').then(function(selected) {
+        expect(selected).to.equal(precinct);
+    });
+});
+
 When('I add a new volunteer card', {timeout: 60 * 1000}, async function() {
     const addVolunteerButton = await driver.findElement(By.id("add-volunteer-button-id"));
     addVolunteerButton.click();
