@@ -21,20 +21,26 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
-4. Install Node dependencies
+4. Run backend tests
+
+```bash
+python manage.py test
+```
+
+5. Install Node dependencies
 
 ```bash
 cd frontend/FP_Frontend
 npm install
 ```
 
-5. Start the service
+6. Start the service
 
 ```bash
 npm start
 ```
 
-6. Run tests
+7. Run frontend tests
 
 ```bash
 node_modules/.bin/cucumber.js
