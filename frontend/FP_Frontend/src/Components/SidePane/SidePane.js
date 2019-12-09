@@ -55,7 +55,7 @@ class SidePane extends React.Component {
     let volunteers = [...this.state.volunteers];
 
     if (newAvail != null && newAvail != '') {
-      var re = /[0-9]+/;
+        var re = /[0-9]*\.?[0-9]*/;
       var matches = newAvail.match(re);
 
       if (matches != null && matches.length > 0) {
