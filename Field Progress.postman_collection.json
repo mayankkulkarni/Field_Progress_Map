@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "0735fae3-e13b-401b-abc9-b0e7598a881f",
+		"name": "Field Progress",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all voters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36eb8178-fb35-4d7d-b6d6-357ad3d37dca",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Should have more than 10 voters\", function () {",
+							"    pm.expect(jsonData[\"features\"].length).to.be.above(10);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/results",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"results"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cut turf w/ two volunteers",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"precinctID\": \"130960\",\n    \"volunteers\": [\n        {\n            \"volunteerName\": \"Kevin\",\n            \"availability\": \"0.5\"\n        },\n        {\n            \"volunteerName\": \"Uche\",\n            \"availability\": \"0.2\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/clusters/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"clusters",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cut turf w/ five volunteers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f9f2bc1-a961-46b3-804f-bed79c3ead27",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Should have 5 clusters\", function () {",
+							"    var clustersFound = [];",
+							"    ",
+							"    for (var it = 0; it < jsonData[\"features\"].length; it++) {",
+							"        if (\"cluster\" in jsonData[\"features\"][it][\"properties\"]) {",
+							"            if (clustersFound.indexOf(jsonData[\"features\"][it][\"properties\"][\"cluster\"]) == -1) {",
+							"                clustersFound.push(jsonData[\"features\"][it][\"properties\"][\"cluster\"]);",
+							"            }",
+							"        }",
+							"    }",
+							"    ",
+							"    pm.expect(clustersFound.length).to.eql(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"precinctID\": \"130960\",\n    \"volunteers\": [\n        {\n            \"volunteerName\": \"Kevin\",\n            \"availability\": \"0.5\"\n        },\n        {\n            \"volunteerName\": \"Uche\",\n            \"availability\": \"0.2\"\n        },\n        {\n        \t\"volunteerName\": \"Mayank\",\n        \t\"availability\": \"0.1\"\n        },\n        {\n        \t\"volunteerName\": \"Aishwarya\",\n        \t\"availability\": \"0.3\"\n        },\n        {\n        \t\"volunteerName\": \"Sahithi\",\n        \t\"availability\": \"0.3\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/clusters/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"clusters",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

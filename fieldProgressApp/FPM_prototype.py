@@ -7,10 +7,18 @@ import json
 from shapely.geometry import Polygon, Point
 
 
-def get_voters_geojson():
-    df = pd.read_csv('fieldProgressApp/data/voters.csv')
+def get_voters_geojson(votersCsv, precinctJson):
+    """Creates a GeoJSON file containing voter and precinct information.
+
+    :param votersCsv: a CSV file containing all voters
+    :param precinctJson: a JSON file containing precinct information
+    :returns: None, but a new GeoJSON file should be created
+
+    """
+
+    df = pd.read_csv(votersCsv)
     df.columns = ['Name', 'Address', 'lat', 'lon', 'zipcode']
-    pdf = gpd.read_file('fieldProgressApp/data/precincts_sdcc_d6.json')
+    pdf = gpd.read_file(precinctJson)
     vdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lon, df.lat))
     mapbox_token = 'pk.eyJ1IjoidWJhY2hyaXMiLCJhIjoiY2sxYjczdWhpMGZuMzNjb2I5OGlqb3gwaCJ9.iLrtxaVXfhsJM0iyWwdQ5Q'
 

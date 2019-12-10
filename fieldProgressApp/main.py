@@ -21,6 +21,9 @@ class VehicleRouting(object):
         self.precinct_voters = None
         self.slack = slack
 
+        if self.precinct == None or self.precinct == '':
+            raise Exception('Must provide a precinct')
+
     def load_data(self):
         df = pd.read_csv('fieldProgressApp/data/voters.csv')
         df.columns = ['Name', 'Address', 'lat', 'lon', 'zipcode']
@@ -29,6 +32,10 @@ class VehicleRouting(object):
         return pdf, vdf
 
     def get_volunteer_mapping(self):
+
+        if len(self.volunteer_info) == 0:
+            raise Exception('Cannot work with no volunteers')
+
         availability = []
         names = {}
         idx = 0
@@ -93,7 +100,6 @@ class VehicleRouting(object):
             #         plan_output += '{}\n'.format(manager.IndexToNode(index))
             plan_output = plan_output[:-3]
             plan_output += '\nTime of the route: {}secs\n'.format(route_distance)
-            print(plan_output)  # debugging step
         with open('cluster.geojson', 'w') as f:
             geojson.dump(self.precinct_voters, f)
 

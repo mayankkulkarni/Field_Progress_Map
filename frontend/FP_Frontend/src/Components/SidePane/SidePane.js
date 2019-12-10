@@ -28,15 +28,48 @@ class SidePane extends React.Component {
   }
 
   nameChangeHandler= (event, id) => {
+    var newName = event.target.value;
     let volunteers = [...this.state.volunteers]
-    volunteers[id].volunteerName= event.target.value
-    this.setState({volunteers: volunteers})
+
+    if (newName != null && newName != '') {
+      var re = /([a-zA-Z ]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*)/;
+      var matches = newName.match(re);
+
+      if (matches != null && matches.length > 0) {
+        volunteers[id].volunteerName=matches[0];
+        event.target.value = matches[0];
+      } else {
+        volunteers[id].volunteerName = '';
+        event.target.value = '';
+      }
+    } else {
+      event.target.value = '';
+      volunteers[id].volunteerName = '';
+    }
+
+    this.setState({volunteers: volunteers});
   }
 
   availabilityChangeHandler= (event, id) => {
-    let volunteers = [...this.state.volunteers]
-    volunteers[id].availability= event.target.value
-    this.setState({volunteers: volunteers})
+    var newAvail = event.target.value;
+    let volunteers = [...this.state.volunteers];
+
+    if (newAvail != null && newAvail != '') {
+        var re = /[0-9]*\.?[0-9]*/;
+      var matches = newAvail.match(re);
+
+      if (matches != null && matches.length > 0) {
+        newAvail = matches[0];
+      } else {
+        newAvail = '';
+      }
+    } else {
+      newAvail = '';
+    }
+
+    event.target.value = newAvail;
+    volunteers[id].availability = newAvail;
+    this.setState({volunteers: volunteers});
 
   }
 
@@ -86,17 +119,19 @@ class SidePane extends React.Component {
 
     return (
       <div className="Pane"> 
-        <div className="Form-Container">
+        <div id="input-pane" className="Form-Container">
           {forms}
         </div>
         <Button
           variant="light"
          className="Run-Button2"  
+         id="add-volunteer-button-id" 
          onClick={this.addVolunteerHandler}
          >
            Add Volunteer
           </Button>
         <Button className="Run-Button" 
+        id="cut-turf-button-id"
         variant="light"
         onClick={this.sendData}>
           Cut Turf
