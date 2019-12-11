@@ -43,9 +43,9 @@ class NavBarComponent extends React.Component {
             <Form.Control
              as="select"
              ref="precintID"
-             placeholder="Select Precinct..." 
+             required
              onChange={this.handleIDChange}>
-               <option>Select Precinct</option>
+               <option value="">Select Precinct</option>
               {
                 this.state.PrecinctIDs.map((id, index) => {
                   return <option key={index}>{id}</option>
