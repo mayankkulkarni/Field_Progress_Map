@@ -14,28 +14,6 @@ import axios from 'axios';
 const MAPBOX_ACCESS_TOKEN= 'pk.eyJ1IjoidWJhY2hyaXMiLCJhIjoiY2sxYjczdWhpMGZuMzNjb2I5OGlqb3gwaCJ9.iLrtxaVXfhsJM0iyWwdQ5Q'
 const mapStyle="mapbox://styles/mapbox/outdoors-v11"
 
-// Information from the github deckGL geoGSON example 
-const DATA_URL = 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/geojson/vancouver-blocks.json'; // eslint-disable-line
-
-export const COLOR_SCALE = scaleThreshold()
-  .domain([-0.6, -0.45, -0.3, -0.15, 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2])
-  .range([
-    [65, 182, 196],
-    [127, 205, 187],
-    [199, 233, 180],
-    [237, 248, 177],
-    // zero
-    [255, 255, 204],
-    [255, 237, 160],
-    [254, 217, 118],
-    [254, 178, 76],
-    [253, 141, 60],
-    [252, 78, 42],
-    [227, 26, 28],
-    [189, 0, 38],
-    [128, 0, 38]
-  ]);
-
 export const COLOR_TO_RGB_ARRAY=(cluster) =>{
 
   switch (cluster){
@@ -71,7 +49,6 @@ export const COLOR_TO_RGB_ARRAY=(cluster) =>{
   }
 }
 
-// end of info 
 
 const initialViewState = {
     // latitude: 49.254,
@@ -83,25 +60,6 @@ const initialViewState = {
     bearing: 0
 };
 
-
-const geoJsonData = {"type": "FeatureCollection", "features": [
-  {"geometry": {"type": "Point", "coordinates": [-117.131861, 32.920173]}, "type": "Feature", "properties": {"cluster": 3, "Address": "8990 BRENTFORD AVE", "Name": "Lavinnia  Sweigart", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.133607, 32.920137]}, "type": "Feature", "properties": {"cluster": 4, "Address": "8880 BRENTFORD AVE", "Name": "Mercedese Irmgard Thero", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.132555, 32.920159]}, "type": "Feature", "properties": {"cluster": 1, "Address": "8950 BRENTFORD AVE", "Name": "Denkevitz  Rener", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.132507, 32.920452]}, "type": "Feature", "properties": {"cluster": 1, "Address": "8969 LIBRA DR", "Name": "Assent  Gantvoort", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.132834, 32.920445]}, "type": "Feature", "properties": {"cluster": 1, "Address": "8953 LIBRA DR", "Name": "Keuna  Malmgren", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.13517, 32.920105]}, "type": "Feature", "properties": {"cluster": 0, "Address": "8776 BRENTFORD AVE", "Name": "Jimyah  Wokwicz", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.133653, 32.920426]}, "type": "Feature", "properties": {"cluster": 4, "Address": "8921 LIBRA DR", "Name": "Cannette  Mahalick", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.134128, 32.920126]}, "type": "Feature", "properties": {"cluster": 2, "Address": "8850 BRENTFORD AVE", "Name": "Liliya  Rallison", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.13267, 32.920449]}, "type": "Feature", "properties": {"cluster": 1, "Address": "8961 LIBRA DR", "Name": "Fugate  Standerwick", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.133607, 32.920137]}, "type": "Feature", "properties": {"cluster": 4, "Address": "8880 BRENTFORD AVE", "Name": "Yeicob  Domingues", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.135138, 32.920393]}, "type": "Feature", "properties": {"cluster": 0, "Address": "8777 LIBRA DR", "Name": "Nayya  Drouillard", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.134475, 32.920407]}, "type": "Feature", "properties": {"cluster": 5, "Address": "8845 LIBRA DR", "Name": "Tammeka  Piazza", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.133953, 32.920131]}, "type": "Feature", "properties": {"cluster": 2, "Address": "8860 BRENTFORD AVE", "Name": "Quintoria  Reigle", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.135002, 32.920108]}, "type": "Feature", "properties": {"cluster": 0, "Address": "8786 BRENTFORD AVE", "Name": "D\u017eemila  Denny", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.13267, 32.920449]}, "type": "Feature", "properties": {"cluster": 1, "Address": "8961 LIBRA DR", "Name": "Erlon  Willison", "zipcode": 130960}}
-  ,{"geometry": {"type": "Point", "coordinates": [-117.133256, 32.920144]}, "type": "Feature", "properties": {"cluster": 6, "Address": "8910 BRENTFORD AVE", "Name": "Vedvit  Swerdlow", "zipcode": 130960}}
-  ]}
 
 const tooltipStyle = {
   position: 'absolute',
@@ -135,28 +93,19 @@ class Map extends React.Component {
 
     componentDidMount() {
       
-      //comment this in 
+
       axios.get('http://localhost:8000/api/results/')
           .then( response => {
             this._processData(response.data);
-            // console.log(response);
+  
           })
 
-      //comment this out 
-      // this._processData();
     }
 
-    //Put this in when akanshka makes sure her endpoint is working 
     _processData(data) {
       const points = data.features;
       this.setState({points})
     }
-
-    //Comment this out when the results of her end point is working 
-    // _processData() {
-    //   const points = geoJsonData.features;
-    //   this.setState({points})
-    // }
 
     _onHover = ({ x, y, object }) => {
       const properties = object ? object.properties : null;

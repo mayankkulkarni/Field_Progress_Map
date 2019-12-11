@@ -93,11 +93,16 @@ class SidePane extends React.Component {
       }
     }
 
+    if(!precinctID){
+      alert("Please Select a Precinct ID")
+      return;
+    }
+
     //this will be axios.post
     axios.post('http://localhost:8000/api/clusters/', requestData)
           .then( response => {
             this.props.turfResult(response.data)
-            // console.log(response);
+            console.log(response.data);
           })
 
     this.setState({volunteers: [

@@ -42,7 +42,7 @@ export class LayerControls extends Component {
           {Object.keys(settings).map(key => (
             <div key={key}>
               <label>{propTypes[key].displayName}</label>
-              <div class="control" style={{ display: 'inline-block', float: 'right' }}>
+              <div style={{ display: 'inline-block', float: 'right' }}>
                 {settings[key]}
               </div>
               <Setting
