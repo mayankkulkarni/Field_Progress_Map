@@ -23,7 +23,7 @@ Fiona==1.8.13
 geojson==2.5.0
 geopandas==0.6.2
 idna==2.8
-ipython==7.10.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 iso3166==1.0
 jedi==0.15.1
